@@ -1,0 +1,103 @@
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('fonts/OpenDyslexic-Regular.eot');
+  src: url('fonts/OpenDyslexic-Regular.eot?#iefix') format('embedded-opentype'),
+    url('fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+    url('fonts/OpenDyslexic-Regular.woff') format('woff'),
+    url('fonts/OpenDyslexic-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('fonts/OpenDyslexic-Bold.eot');
+  src: url('fonts/OpenDyslexic-Bold.eot?#iefix') format('embedded-opentype'),
+    url('fonts/OpenDyslexic-Bold.woff2') format('woff2'),
+    url('fonts/OpenDyslexic-Bold.woff') format('woff'),
+    url('fonts/OpenDyslexic-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('../fonts/OpenDyslexic-Italic.eot');
+  src: url('../fonts/OpenDyslexic-Italic.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/OpenDyslexic-Italic.woff2') format('woff2'),
+    url('../fonts/OpenDyslexic-Italic.woff') format('woff'),
+    url('../fonts/OpenDyslexic-Italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('../fonts/OpenDyslexic-Bold-Italic.eot');
+  src: url('../fonts/OpenDyslexic-Bold-Italic.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/OpenDyslexic-Bold-Italic.woff2') format('woff2'),
+    url('../fonts/OpenDyslexic-Bold-Italic.woff') format('woff'),
+    url('../fonts/OpenDyslexic-Bold-Italic.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+body {
+  font-family: 'OpenDyslexic', Arial, sans-serif;
+}
+
+#result {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 15px;
+
+  color: #333;
+
+  /* larger font */
+  font-size: 2em;
+  /* more space betwen lines */
+  line-height: 2em;
+
+  /* font-weight: bold; */
+  /* more space between words */
+  /* word-spacing: 0.4em; */
+
+  /* Open-Dyslexic font */
+  font-family: 'OpenDyslexic', sans-serif;
+}
+
+span.tool-word {
+  border: 1px dotted orange;
+  padding: 2px 5px;
+}
+
+span.orange {
+  color: orange;
+}
+
+span.green {
+  color: green;
+}
+
+span.red {
+  color: red;
+}
+
+span.blue {
+  color: blue;
+}
+
+span.purple {
+  color: purple;
+}
+
+span.brown {
+  color: brown;
+}
+
+span.pink {
+  color: pink;
+}
+
+span.black {
+  color: black;
+}

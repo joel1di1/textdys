@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Text to Dys</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <form action="/" method="post">
+    <textarea name="text" style="min-width: 400px; min-height: 300px;">{{ text if text else 'Bonjour' }}</textarea>
+    <input type="submit" value="Submit">
+  </form>
+  {% if result %}
+  <div id="result">{{ result|safe }}</div>
+  {% endif %}
+</body>
+
+</html>
