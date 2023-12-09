@@ -7,7 +7,9 @@
 </head>
 
 <body>
-  <form action="/" method="post">
+  <h1>Text to Dys</h1>
+  <p>Enter your text below:</p>
+  <form class="form" action="/" method="post">
     <textarea name="text" style="min-width: 400px; min-height: 300px;">{{ text if text else 'Bonjour' }}</textarea>
     <input type="submit" value="Submit">
   </form>

@@ -41,28 +41,35 @@
   font-weight: bold;
   font-style: italic;
 }
+
 body {
-  font-family: 'OpenDyslexic', Arial, sans-serif;
+  color: #333;
+    font-size: 2em;
+    line-height: 2em;
+    word-spacing: 0.4em;
+  
+    font-family: 'OpenDyslexic', sans-serif;
 }
 
 #result {
   margin-top: 20px;
   border: 1px solid #ddd;
   padding: 15px;
+}
 
-  color: #333;
+.form {
+  /* take all the width */
+  width: 100%;
+  /* center the form */
+  margin: 0 auto;
+}
 
-  /* larger font */
-  font-size: 2em;
-  /* more space betwen lines */
-  line-height: 2em;
+textarea {
+  /* take all the width */
+  width: 90%;
+  /* center the form */
+  margin: 0 auto;
 
-  /* font-weight: bold; */
-  /* more space between words */
-  /* word-spacing: 0.4em; */
-
-  /* Open-Dyslexic font */
-  font-family: 'OpenDyslexic', sans-serif;
 }
 
 span.tool-word {
