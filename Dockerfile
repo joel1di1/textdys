@@ -21,4 +21,4 @@ EXPOSE 5000
 ENV FLASK_ENV=production
 
 # Run main.py when the container launches
-CMD ["gunicorn", "--workers=3", "--bind=0.0.0.0:5000", "main:app"]
+CMD gunicorn --workers=3 --bind=0.0.0.0:${PORT:-5000} main:app

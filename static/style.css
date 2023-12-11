@@ -7,6 +7,7 @@
     url('fonts/OpenDyslexic-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -18,6 +19,7 @@
     url('fonts/OpenDyslexic-Bold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -29,6 +31,7 @@
     url('../fonts/OpenDyslexic-Italic.otf') format('opentype');
   font-weight: normal;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -40,6 +43,7 @@
     url('../fonts/OpenDyslexic-Bold-Italic.otf') format('opentype');
   font-weight: bold;
   font-style: italic;
+  font-display: swap;
 }
 
 body {
@@ -54,11 +58,14 @@ body {
 }
 
 #result {
-  margin-top: 20px;
+  margin-top: 5px;
   border: 1px solid #ddd;
   padding: 15px;
 }
 
+.print-btn {
+  float: right;
+}
 .form {
   /* take all the width */
   width: 100%;
@@ -121,4 +128,18 @@ span.black {
   font-weight: 600;
   color: black;
   text-decoration: underline black;
+}
+
+@media print {
+  body {
+    color: #333;
+  }
+
+  .header {
+    display: none;
+  }
+
+  #result {
+    border: none;
+  }
 }
