@@ -53,6 +53,9 @@ class TestTextToDys(unittest.TestCase):
     def test_phoneme_highlighting_remplissaient(self):
         self.assertTextTransformed('remplissaient', 'r<span class="orange">em</span>pliss<span class="purple">ai</span>ent')
 
+    def test_phoneme_highlighting_lointaine(self):
+        self.assertTextTransformed('lointaine', 'lo<span class="green">in</span>t<span class="purple">ai</span>ne')
+
 
 if __name__ == '__main__':
 

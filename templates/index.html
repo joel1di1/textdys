@@ -5,23 +5,60 @@
   <title>Text to Dys</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    function processText() {
+      // disable button
+      document.querySelector('input[type="button"]').disabled = true;
+
+      const textArea = document.querySelector('textarea[name="text"]');
+      const resultDiv = document.getElementById('result');
+      let words = textArea.value.replace(/\n/g, '<br>').split(/\s+/);
+
+      resultDiv.innerHTML = '';  // Clear previous results
+      processChunk(words, 0, resultDiv);
+    }
+
+    CHUNK_SIZE = 5;
+
+    function processChunk(words, index, resultDiv) {
+      if (index >= words.length) return;  // Stop if no words left
+
+      let chunk = words.slice(index, index + CHUNK_SIZE).join(' ');
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'text=' + encodeURIComponent(chunk)
+      })
+        .then(response => response.text())
+        .then(data => {
+          resultDiv.innerHTML += " " + data;
+
+          // process next chunk if there are still words left
+          if (index + CHUNK_SIZE < words.length)
+            processChunk(words, index + CHUNK_SIZE, resultDiv);
+          else
+            document.querySelector('input[type="button"]').disabled = false;
+        });
+    }
+  </script>
 </head>
 
 <body>
   <div class="header">
     <h1>Text to Dys</h1>
     <p>Entrez votre texte:</p>
-    <form class="form" action="/" method="post">
+    <form class="form" onsubmit="event.preventDefault(); processText();">
       <textarea name="text" style="min-width: 400px; min-height: 300px;">{{ text if text else 'Bonjour' }}</textarea>
-      <input class="submit" type="submit" value="Transformer">
+      <input class="submit" type="button" value="Transformer" onclick="processText()">
     </form>
   </div>
-  {% if result %}
-  <div class="header">
-    <button onclick="window.print()" class="print-btn header">🖨️ Print</button>
-  </div>
-  <div id="result">{{ result|safe }}</div>
-  {% endif %}
+  <div>
+    <div class="header">
+      <button onclick="window.print()" class="print-btn header">🖨️ Print</button>
+    </div>
+    <div id="result">
+      {{ result|safe }}
+    </div>
+    <div>
 </body>
-
 </html>

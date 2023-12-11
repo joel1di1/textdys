@@ -15,8 +15,8 @@ SPECIAL_PHONEMES = [
                     ['u', 'red', r'(ou)', rf'<span class="red">\1</span>'],
                     ['wa', 'black', r'(oi)', rf'<span class="black">\1</span>'],
                     ['ɔ̃', 'brown', r'(on|om)', rf'<span class="brown">\1</span>'],
-                    ['ɛ̃', 'green', r'((a|e)?in)', rf'<span class="green">\1</span>'],
                     ['ɛ', 'purple', r'(ai|ei)', rf'<span class="purple">\1</span>'],
+                    ['ɛ̃', 'green', r'((a|e)?in)', rf'<span class="green">\1</span>'],
                     ['o', 'pink', r'(eau|au)', rf'<span class="pink">\1</span>'],
                     ['ø', 'blue', r'(eu)', rf'<span class="blue">\1</span>'],
                     ['œ', 'blue', r'(eu)', rf'<span class="blue">\1</span>'],
@@ -36,7 +36,7 @@ def process_text_to_dys(text):
         # join the words back together
         highlighted_line = ' '.join(highlighted_words)
         # add the line to the text surrounded by a p
-        highlight_text += f'<p>{highlighted_line}</p>'
+        highlight_text += f'{highlighted_line}'
 
     return highlight_text
 
