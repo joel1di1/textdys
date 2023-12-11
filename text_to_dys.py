@@ -11,7 +11,7 @@ CHAR_RELOU = list('ɛ̃')[1]
 regexp_an_not_followed_by_e = r'(?<!e)an'
 
 SPECIAL_PHONEMES = [
-                    ['ɑ̃', 'orange', r'(?<!ai)(an|em|en|am)(?!e)', rf'<span class="orange">\1</span>'],
+                    ['ɑ̃', 'orange', r'(?<!ai)(an|em|en|am)(?!e|a)', rf'<span class="orange">\1</span>'],
                     ['u', 'red', r'(ou)', rf'<span class="red">\1</span>'],
                     ['wa', 'black', r'(oi)', rf'<span class="black">\1</span>'],
                     ['ɔ̃', 'brown', r'(on|om)', rf'<span class="brown">\1</span>'],
@@ -23,9 +23,22 @@ SPECIAL_PHONEMES = [
 ]
 
 def process_text_to_dys(text):
-    words = text.split()
-    highlighted_words = [highlight_word(word) for word in words]
-    return ' '.join(highlighted_words)
+    # get each line
+    lines = text.split('\n')
+    # for each line
+
+    highlight_text = ''
+    for i in range(len(lines)):
+        # get all the words of the line
+        words = lines[i].split()
+        # highlight each word
+        highlighted_words = [highlight_word(word) for word in words]
+        # join the words back together
+        highlighted_line = ' '.join(highlighted_words)
+        # add the line to the text surrounded by a p
+        highlight_text += f'<p>{highlighted_line}</p>'
+
+    return highlight_text
 
 def word_contains_phoneme(word_phonemes, phoneme):
     # print(f'checking if word {word_phonemes} contains phoneme {phoneme}')
