@@ -1,19 +1,25 @@
 import re
+import sys
 import unicodedata
 from phonemizer import phonemize
 
 TOOL_WORDS = ['et', 'que', 'qui', 'est', 'sont', 'avec', 'pour', 'dans',
               'mais', 'alors', 'aussi', 'chez']
+
+CHAR_RELOU = list('ɛ̃')[1]
+
+regexp_an_not_followed_by_e = r'(?<!e)an'
+
 SPECIAL_PHONEMES = [
-                    ['u', 'red', r'(.*)(ou)(.*)'],
-                    ['wa', 'black', r'(.*)(oi)(.*)'],
-                    ['ɔ̃', 'brown', r'(.*)(on|om)(.*)'],
-                    ['ɑ̃', 'orange', r'(.*)(an|em|en|am)([^nm].*)?$'],
-                    ['ɛ̃', 'green', r'(.*)(ain|ein)(.*)'],
-                    ['ɛ', 'purple', r'(.*)(ai|ei)(.*)'],
-                    ['o', 'pink', r'(.*)(eau|au)(.*)'],
-                    ['ø', 'blue', r'(.*)(eu)(.*)'],
-                    ['œ', 'blue', r'(.*)(eu)(.*)'],
+                    ['ɑ̃', 'orange', r'(?<!ai)(an|em|en|am)(?!e)', rf'<span class="orange">\1</span>'],
+                    ['u', 'red', r'(ou)', rf'<span class="red">\1</span>'],
+                    ['wa', 'black', r'(oi)', rf'<span class="black">\1</span>'],
+                    ['ɔ̃', 'brown', r'(on|om)', rf'<span class="brown">\1</span>'],
+                    ['ɛ̃', 'green', r'((a|e)?in)', rf'<span class="green">\1</span>'],
+                    ['ɛ', 'purple', r'(ai|ei)', rf'<span class="purple">\1</span>'],
+                    ['o', 'pink', r'(eau|au)', rf'<span class="pink">\1</span>'],
+                    ['ø', 'blue', r'(eu)', rf'<span class="blue">\1</span>'],
+                    ['œ', 'blue', r'(eu)', rf'<span class="blue">\1</span>'],
 ]
 
 def process_text_to_dys(text):
@@ -22,15 +28,17 @@ def process_text_to_dys(text):
     return ' '.join(highlighted_words)
 
 def word_contains_phoneme(word_phonemes, phoneme):
-    phoneme_chars = list(phoneme)
+    # print(f'checking if word {word_phonemes} contains phoneme {phoneme}')
     word_phonemes_chars = list(word_phonemes)
+    phoneme_chars = list(phoneme)
+    # print(f'\tchecking if word {word_phonemes_chars} contains phoneme {phoneme_chars}')
     # for each position in the word, check if the array matches
     for i in range(len(word_phonemes_chars)-len(phoneme_chars)+1):
         for j in range(len(phoneme_chars)):
-            print(f'checking word {word_phonemes_chars} at position {i+j} with phoneme {phoneme_chars} at position {j}')
+            # print(f'checking word {word_phonemes_chars} at position {i+j} with phoneme {phoneme_chars} at position {j}')
             if word_phonemes_chars[i+j] != phoneme_chars[j]:
                 break
-            else:
+            if j == len(phoneme_chars)-1 and (len(word_phonemes_chars) <= i+j+1 or word_phonemes_chars[i+j+1] != CHAR_RELOU):
                 return True
 
 
@@ -39,23 +47,33 @@ def highlight_word(word):
         return f'<span class="tool-word">{word}</span>'
     else:
         word_phonemes = phonemize(word, language='fr-fr', backend='espeak')
-        word_phonemes = unicodedata.normalize('NFC', word_phonemes)
-        print(f'phonemes for word {word}: {word_phonemes}, {list(word_phonemes)}, {list("ɛ̃")}')
+        word_phonemes = unicodedata.normalize('NFC', word_phonemes).strip()
         # for each special phoneme, if the word contains it, highlight the corresponding part of the word
         for specials in SPECIAL_PHONEMES:
             phoneme = specials[0]
             color = specials[1]
             regexp = specials[2]
-            print(f'checking phoneme {phoneme} in word {word}, phonemes {word_phonemes}')
+            replace = specials[3]
+            # print(f'checking phoneme {phoneme} in word {word}, phonemes {word_phonemes}')
             if word_contains_phoneme(word_phonemes, phoneme):
-                print(f'word {word} contains phoneme {phoneme}')
+                # print(f'word {word} contains phoneme {phoneme}')
                 # in the original word, replace the regexp by the regexp with the span
                 # regex is non-case sensitive
-                word = re.sub(regexp, rf'\1<span class="{color}">\2</span>\3', word, flags=re.IGNORECASE)
+                word = re.sub(regexp, replace, word, flags=re.IGNORECASE)
 
     return word
 
 def phonemize_text(text):
     words = text.split()
-    phonemized_words = [phonemize(word, language='fr-fr', backend='espeak') for word in words]
+    phonemized_words = [phonemize(word.strip, language='fr-fr', backend='espeak') for word in words]
     return ' '.join(phonemized_words)
+
+
+
+
+def main():
+    text = ' '.join(sys.argv[1:])
+    print(phonemize(text, language='fr-fr', backend='espeak'))
+
+if __name__ == "__main__":
+    main()
