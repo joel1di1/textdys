@@ -8,10 +8,10 @@
 
 <body>
   <h1>Text to Dys</h1>
-  <p>Enter your text below:</p>
+  <p>Entrez votre texte:</p>
   <form class="form" action="/" method="post">
     <textarea name="text" style="min-width: 400px; min-height: 300px;">{{ text if text else 'Bonjour' }}</textarea>
-    <input type="submit" value="Submit">
+    <input class="submit" type="submit" value="Transformer">
   </form>
   {% if result %}
   <div id="result">{{ result|safe }}</div>

@@ -44,11 +44,12 @@
 
 body {
   color: #333;
-    font-size: 2em;
+  font-size: 2em;
     line-height: 2em;
-    word-spacing: 0.4em;
-  
+    word-spacing: 0.3em;
     font-family: 'OpenDyslexic', sans-serif;
+  max-width: 1200px;
+    margin: 0 auto;
 }
 
 #result {
@@ -65,11 +66,13 @@ body {
 }
 
 textarea {
-  /* take all the width */
-  width: 90%;
-  /* center the form */
-  margin: 0 auto;
+  width: 100%;
+    display: block;
+  }
 
+.submit {
+  margin: 15px auto;
+  display: block;
 }
 
 span.tool-word {
@@ -78,33 +81,42 @@ span.tool-word {
 }
 
 span.orange {
+  font-weight: 600;
   color: orange;
 }
 
 span.green {
+  font-weight: 600;
   color: green;
 }
 
 span.red {
+  font-weight: 600;
   color: red;
 }
 
 span.blue {
+  font-weight: 600;
   color: blue;
 }
 
 span.purple {
+  font-weight: 600;
   color: purple;
 }
 
 span.brown {
+  font-weight: 600;
   color: brown;
 }
 
 span.pink {
+  font-weight: 600;
   color: pink;
 }
 
 span.black {
+  font-weight: 600;
   color: black;
+  text-decoration: underline black;
 }
