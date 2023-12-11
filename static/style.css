@@ -50,6 +50,7 @@ body {
     font-family: 'OpenDyslexic', sans-serif;
   max-width: 1200px;
     margin: 0 auto;
+    background-color: #F8F8F8;
 }
 
 #result {
@@ -68,6 +69,7 @@ body {
 textarea {
   width: 100%;
     display: block;
+    background-color: #F8F8F8;
   }
 
 .submit {
