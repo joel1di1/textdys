@@ -13,3 +13,154 @@
  *= require_tree .
  *= require_self
  */
+
+ @font-face {
+   font-family: 'OpenDyslexic';
+   src: font-url('fonts/OpenDyslexic-Regular.eot');
+   src: font-url('fonts/OpenDyslexic-Regular.eot?#iefix') format('embedded-opentype'),
+     font-url('fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+     font-url('fonts/OpenDyslexic-Regular.woff') format('woff'),
+     font-url('fonts/OpenDyslexic-Regular.otf') format('opentype');
+   font-weight: normal;
+   font-style: normal;
+   font-display: swap;
+ }
+
+ @font-face {
+   font-family: 'OpenDyslexic';
+   src: font-url('fonts/OpenDyslexic-Bold.eot');
+   src: font-url('fonts/OpenDyslexic-Bold.eot?#iefix') format('embedded-opentype'),
+     font-url('fonts/OpenDyslexic-Bold.woff2') format('woff2'),
+     font-url('fonts/OpenDyslexic-Bold.woff') format('woff'),
+     font-url('fonts/OpenDyslexic-Bold.otf') format('opentype');
+   font-weight: bold;
+   font-style: normal;
+   font-display: swap;
+ }
+
+ @font-face {
+   font-family: 'OpenDyslexic';
+   src: font-url('../fonts/OpenDyslexic-Italic.eot');
+   src: font-url('../fonts/OpenDyslexic-Italic.eot?#iefix') format('embedded-opentype'),
+     font-url('../fonts/OpenDyslexic-Italic.woff2') format('woff2'),
+     font-url('../fonts/OpenDyslexic-Italic.woff') format('woff'),
+     font-url('../fonts/OpenDyslexic-Italic.otf') format('opentype');
+   font-weight: normal;
+   font-style: italic;
+   font-display: swap;
+ }
+
+ @font-face {
+   font-family: 'OpenDyslexic';
+   src: font-url('../fonts/OpenDyslexic-Bold-Italic.eot');
+   src: font-url('../fonts/OpenDyslexic-Bold-Italic.eot?#iefix') format('embedded-opentype'),
+     font-url('../fonts/OpenDyslexic-Bold-Italic.woff2') format('woff2'),
+     font-url('../fonts/OpenDyslexic-Bold-Italic.woff') format('woff'),
+     font-url('../fonts/OpenDyslexic-Bold-Italic.otf') format('opentype');
+   font-weight: bold;
+   font-style: italic;
+   font-display: swap;
+ }
+
+ body {
+   font-family: 'OpenDyslexic', sans-serif;
+   max-width: 1200px;
+   margin: 0 auto;
+   background-color: #F8F8F8;
+ }
+
+ #result {
+   margin-top: 5px;
+   border: 1px solid #ddd;
+   padding: 15px;
+ }
+
+ .print-btn {
+   float: right;
+ }
+
+ .form {
+   /* take all the width */
+   width: 100%;
+   /* center the form */
+   margin: 0 auto;
+ }
+
+ textarea {
+   width: 100%;
+   display: block;
+   background-color: #F8F8F8;
+ }
+
+ .submit {
+   margin: 15px auto;
+   display: block;
+   /* bigger, some padding, blue as action button*/
+   font-size: 1em;
+   padding: 5px 10px;
+   background-color: #007bff;
+   color: #fff;
+   border: none;
+   border-radius: 5px;
+ }
+
+
+ span.tool-word {
+   border: 1px dotted orange;
+   padding: 2px 5px;
+ }
+
+ span.orange {
+   font-weight: 600;
+   color: orange;
+ }
+
+ span.green {
+   font-weight: 600;
+   color: green;
+ }
+
+ span.red {
+   font-weight: 600;
+   color: red;
+ }
+
+ span.blue {
+   font-weight: 600;
+   color: blue;
+ }
+
+ span.purple {
+   font-weight: 600;
+   color: purple;
+ }
+
+ span.brown {
+   font-weight: 600;
+   color: brown;
+ }
+
+ span.pink {
+   font-weight: 600;
+   color: pink;
+ }
+
+ span.black {
+   font-weight: 600;
+   color: black;
+   text-decoration: underline black;
+ }
+
+ @media print {
+   body {
+     color: #333;
+   }
+
+   .header {
+     display: none;
+   }
+
+   #result {
+     border: none;
+   }
+ }
