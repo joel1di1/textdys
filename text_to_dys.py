@@ -8,8 +8,6 @@ TOOL_WORDS = ['et', 'que', 'qui', 'est', 'sont', 'avec', 'pour', 'dans',
 
 CHAR_RELOU = list('ɛ̃')[1]
 
-regexp_an_not_followed_by_e = r'(?<!e)an'
-
 SPECIAL_PHONEMES = [
                     ['ɑ̃', 'orange', r'(?<!ai)(an|em|en|am)(?!e|a)', rf'<span class="orange">\1</span>'],
                     ['u', 'red', r'(ou)', rf'<span class="red">\1</span>'],
@@ -78,11 +76,8 @@ def highlight_word(word):
 
 def phonemize_text(text):
     words = text.split()
-    phonemized_words = [phonemize(word.strip, language='fr-fr', backend='espeak') for word in words]
+    phonemized_words = phonemize(words, language='fr-fr', backend='espeak')
     return ' '.join(phonemized_words)
-
-
-
 
 def main():
     text = ' '.join(sys.argv[1:])
