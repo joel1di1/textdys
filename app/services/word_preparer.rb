@@ -18,6 +18,15 @@ class WordPreparer
     ['œ', 'blue', /(eu)/i, '<span class="blue">\1</span>']
   ].freeze
 
+  CACHE = {}
+
+  File.foreach('all_redis.txt') do |line|
+    word, phonemized_word = line.split(':').map(&:strip)
+
+    CACHE[word] = phonemized_word
+  end
+
+
   def redis_client
     @redis_client ||= Redis.new
   end
@@ -53,6 +62,22 @@ class WordPreparer
     false
   end
 
+  def cache
+    return @cache if @cache
+
+    @cache = {}
+    File.foreach('all_redis.txt') do |line|
+      word, phonemized_word = line.split(':').map(&:strip)
+
+      cache[word] = phonemized_word
+    end
+    @cache
+  end
+
+  def get_phonemized_word(word)
+    CACHE[word.downcase]
+  end
+
   def prepare(text) # rubocop:disable Metrics/MethodLength
     # split text into words, separate punctuation from words
     # the sentence "c'est un exemple. Comme un autre"
@@ -65,7 +90,7 @@ class WordPreparer
       when /\W/
         [word, nil]
       else
-        [word, redis_client.get(word.downcase)]
+        [word, get_phonemized_word(word)]
       end
     end
 
@@ -105,3 +130,12 @@ class WordPreparer
     end
   end
 end
+
+# def read_file_and_fill_memory_hash(filename)
+#   cache = {}
+#   File.foreach(filename) do |line|
+#     word, phonemized_word = line.split(':').map(&:strip)
+
+#     cache[word] = phonemized_word
+#   end
+# end
