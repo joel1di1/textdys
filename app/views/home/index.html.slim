@@ -12,8 +12,9 @@ div class="flex flex-col w-full"
     /  font-size: 2em;
     /  line-height: 2em;
     /  word-spacing: 0.3em;
-    div class='border-2 border-gray-300 rounded-lg p-4 mt-4' onclick="window.print()"
-      button onclick="window.print()" class="print-btn header" 🖨️ Print
+    div class='border-2 border-gray-300 rounded-lg p-4 mt-4 static'
+      button onclick="window.print()" class="border-1 border-gray-300 rounded-lg absolute top-0 right-0"
+        |🖨️ Print
       div class="min-w-0 flex-1 text-gray-900 text-2xl" style="line-height: 3em; word-spacing: 0.3em; letter-spacing: 0.1em;"
         = @transformed_text.html_safe
 

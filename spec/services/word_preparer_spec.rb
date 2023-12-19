@@ -61,7 +61,6 @@ RSpec.describe WordPreparer do
     it { ewp('lointaine', 'lo<span class="green">in</span>t<span class="purple">ai</span>ne') }
     it { ewp('ensemble', '<span class="orange">en</span>s<span class="orange">em</span>ble') }
 
-    it { ewp('ensemble', '<span class="orange">en</span>s<span class="orange">em</span>ble') }
     it { ewp('aide.', '<span class="purple">ai</span>de.') }
     it { ewp("ce\ntext\nsur\nlignes", 'ce<br>text<br>sur<br>lignes') }
   end

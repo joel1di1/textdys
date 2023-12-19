@@ -36,19 +36,6 @@ class WordPreparer
     prepared_word
   end
 
-  # def word_contains_phoneme(word_phonemes, phoneme):
-  #     # print(f'checking if word {word_phonemes} contains phoneme {phoneme}')
-  #     word_phonemes_chars = list(word_phonemes)
-  #     phoneme_chars = list(phoneme)
-  #     # print(f'\tchecking if word {word_phonemes_chars} contains phoneme {phoneme_chars}')
-  #     # for each position in the word, check if the array matches
-  #     for i in range(len(word_phonemes_chars)-len(phoneme_chars)+1):
-  #         for j in range(len(phoneme_chars)):
-  #             # print(f'checking word {word_phonemes_chars} at position {i+j} with phoneme {phoneme_chars} at position {j}')
-  #             if word_phonemes_chars[i+j] != phoneme_chars[j]:
-  #                 break
-  #             if j == len(phoneme_chars)-1 and (len(word_phonemes_chars) <= i+j+1 or word_phonemes_chars[i+j+1] != CHAR_RELOU):
-  #                 return True
   def word_contains_phoneme(word_phonemes, phoneme) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
     word_phonemes_chars = word_phonemes.chars
     phoneme_chars = phoneme.chars
@@ -68,7 +55,8 @@ class WordPreparer
 
   def prepare(text) # rubocop:disable Metrics/MethodLength
     # split text into words, separate punctuation from words
-    # the sentence "c'est un exemple. Comme un autre" becomes ["c", "'"", " ", "est", " ", "un", " ", "exemple", ".", " ", "Comme", " ", "un", " ", "autre"]
+    # the sentence "c'est un exemple. Comme un autre"
+    # becomes ["c", "'"", " ", "est", " ", "un", " ", "exemple", ".", " ", "Comme", " ", "un", " ", "autre"]
     words = text.split(/(\W)/).reject(&:empty?)
 
     # get phonemized words from Redis
@@ -111,7 +99,7 @@ class WordPreparer
 
   def write_all_redis_keys_and_value_in_file(filename)
     File.open(filename, 'w') do |file|
-      redis_client.keys.each do |word|
+      redis_client.each_keys do |word|
         file.puts("#{word}: #{redis_client.get(word)}")
       end
     end
