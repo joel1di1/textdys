@@ -14,54 +14,6 @@
  *= require_self
  */
 
-/*
-@font-face {
-  font-family: 'OpenDyslexic';
-  src: font-url('assets/fonts/OpenDyslexic-Regular.eot');
-  src: font-url('assets/fonts/OpenDyslexic-Regular.eot?#iefix') format('embedded-opentype'),
-    font-url('assets/fonts/OpenDyslexic-Regular.woff2') format('woff2'),
-    font-url('assets/fonts/OpenDyslexic-Regular.woff') format('woff'),
-    font-url('assets/fonts/OpenDyslexic-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'OpenDyslexic';
-  src: font-url('assets/fonts/OpenDyslexic-Bold.eot');
-  src: font-url('assets/fonts/OpenDyslexic-Bold.eot?#iefix') format('embedded-opentype'),
-    font-url('assets/fonts/OpenDyslexic-Bold.woff2') format('woff2'),
-    font-url('assets/fonts/OpenDyslexic-Bold.woff') format('woff'),
-    font-url('assets/fonts/OpenDyslexic-Bold.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'OpenDyslexic';
-  src: font-url('assets/fonts/OpenDyslexic-Italic.eot');
-  src: font-url('assets/fonts/OpenDyslexic-Italic.eot?#iefix') format('embedded-opentype'),
-    font-url('assets/fonts/OpenDyslexic-Italic.woff2') format('woff2'),
-    font-url('assets/fonts/OpenDyslexic-Italic.woff') format('woff'),
-    font-url('assets/fonts/OpenDyslexic-Italic.otf') format('opentype');
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'OpenDyslexic';
-  src: font-url('assets/fonts/OpenDyslexic-Bold-Italic.eot');
-  src: font-url('assets/fonts/OpenDyslexic-Bold-Italic.eot?#iefix') format('embedded-opentype'),
-    font-url('assets/fonts/OpenDyslexic-Bold-Italic.woff2') format('woff2'),
-    font-url('assets/fonts/OpenDyslexic-Bold-Italic.woff') format('woff'),
-    font-url('assets/fonts/OpenDyslexic-Bold-Italic.otf') format('opentype');
-  font-weight: bold;
-  font-style: italic;
-  font-display: swap;
-} */
 
 body {
   font-family: 'Verdana', sans-serif;
