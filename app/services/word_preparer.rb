@@ -18,14 +18,13 @@ class WordPreparer
     ['œ', 'blue', /(eu)/i, '<span class="blue">\1</span>']
   ].freeze
 
-  CACHE = {}
+  CACHE = {}.freeze
 
   File.foreach('all_redis.txt') do |line|
     word, phonemized_word = line.split(':').map(&:strip)
 
     CACHE[word] = phonemized_word
   end
-
 
   def redis_client
     @redis_client ||= Redis.new
@@ -45,7 +44,7 @@ class WordPreparer
     prepared_word
   end
 
-  def word_contains_phoneme(word_phonemes, phoneme) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+  def word_contains_phoneme(word_phonemes, phoneme) # rubocop:disable Metrics/AbcSize
     word_phonemes_chars = word_phonemes.chars
     phoneme_chars = phoneme.chars
 
@@ -78,7 +77,7 @@ class WordPreparer
     CACHE[word.downcase]
   end
 
-  def prepare(text) # rubocop:disable Metrics/MethodLength
+  def prepare(text)
     # split text into words, separate punctuation from words
     # the sentence "c'est un exemple. Comme un autre"
     # becomes ["c", "'"", " ", "est", " ", "un", " ", "exemple", ".", " ", "Comme", " ", "un", " ", "autre"]
