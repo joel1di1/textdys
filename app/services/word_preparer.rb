@@ -18,7 +18,7 @@ class WordPreparer
     ['œ', 'blue', /(eu)/i, '<span class="blue">\1</span>']
   ].freeze
 
-  CACHE = {}.freeze
+  CACHE = {} # rubocop:disable Style/MutableConstant
 
   File.foreach('all_redis.txt') do |line|
     word, phonemized_word = line.split(':').map(&:strip)
