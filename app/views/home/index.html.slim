@@ -1,4 +1,6 @@
 div class="flex flex-col w-full"
+  div class="flex justify-center"
+    h1 class="m-8 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl print:hidden" Text dys
   div class="min-w-0 flex-1 print:hidden"
     = form_tag('/', method: :post, class: 'relative', data: {turbo: false} ) do
       div class="overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600"
@@ -8,12 +10,8 @@ div class="flex flex-col w-full"
 
 
   - if @transformed_text
-    /   color: #333;
-    /  font-size: 2em;
-    /  line-height: 2em;
-    /  word-spacing: 0.3em;
-    div class='border-2 border-gray-300 rounded-lg p-4 mt-4 static'
-      button onclick="window.print()" class="border-1 border-gray-300 rounded-lg absolute top-0 right-0"
+    div class='border-2 border-gray-300 rounded-lg p-4 mt-4 relative print:border-none'
+      button onclick="window.print()" class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 absolute top-0 right-0 m-2 print:hidden"
         |🖨️ Print
       div class="min-w-0 flex-1 text-gray-900 text-2xl" style="line-height: 3em; word-spacing: 0.3em; letter-spacing: 0.1em;"
         = @transformed_text.html_safe
