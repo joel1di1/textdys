@@ -19,7 +19,6 @@ body {
   font-family: 'Verdana', sans-serif;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: #F8F8F8;
 }
 
 #result {
@@ -59,43 +58,43 @@ textarea {
 
 
 span.tool-word {
-  border: 1px dotted orange;
-  padding: 2px 5px;
+  border: 1px orange solid;
+  padding: 2px 1px;
 }
 
 span.orange {
   font-weight: 600;
-  color: orange;
+  color: #FFA500;
 }
 
 span.green {
   font-weight: 600;
-  color: green;
+  color: #00FF00;
 }
 
 span.red {
   font-weight: 600;
-  color: red;
+  color: #FF0000;
 }
 
 span.blue {
   font-weight: 600;
-  color: blue;
+  color: #009eec;
 }
 
 span.purple {
   font-weight: 600;
-  color: purple;
+  color: #9400D3;
 }
 
 span.brown {
   font-weight: 600;
-  color: brown;
+  color: #723a05;
 }
 
 span.pink {
   font-weight: 600;
-  color: pink;
+  color: #ffa8d4;
 }
 
 span.black {
@@ -104,16 +103,38 @@ span.black {
   text-decoration: underline black;
 }
 
+/*
 @media print {
-  body {
-    color: #333;
+  span.orange {
+    color: #FFA500;
   }
 
-  .header {
-    display: none;
+  span.green {
+    color: #00FF00;
   }
 
-  #result {
-    border: none;
+  span.red {
+    color: #FF0000;
+  }
+
+  span.blue {
+    color: #009eec;
+  }
+
+  span.purple {
+    color: #9400D3;
+  }
+
+  span.brown {
+    color: #b55d09;
+  }
+
+  span.pink {
+    color: #ffa8d4;
+  }
+
+  span.black {
+    color: #000000;
   }
 }
+*/
