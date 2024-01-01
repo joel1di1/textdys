@@ -87,15 +87,22 @@ span.purple {
   color: #9400D3;
 }
 
+span.green span.purple {
+  font-weight: 600;
+  color: #00FF00;
+}
+
 span.brown {
   font-weight: 600;
   color: #723a05;
 }
 
+
 span.pink {
   font-weight: 600;
   color: #ffa8d4;
 }
+
 
 span.black {
   font-weight: 600;
