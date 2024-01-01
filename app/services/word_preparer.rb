@@ -7,12 +7,12 @@ class WordPreparer
   CHAR_RELOU = 'ɛ̃'.chars[1]
 
   SPECIAL_PHONEMES = [
-    ['ɑ̃', 'orange', /(?<!ai)(an|em|en|am)(?!e|a)/i, '<span class="orange">\1</span>'],
-    ['u', 'red', /(ou)/i, '<span class="red">\1</span>'],
+    ['ɑ̃', 'orange', /(?<!ai)(an|em|en|am)(?!(e|a)|ment)/i, '<span class="orange">\1</span>'],
+    ['u', 'red', /(o[uùû])/i, '<span class="red">\1</span>'],
     ['wa', 'black', /(o[iî])/i, '<span class="black">\1</span>'],
-    ['ɔ̃', 'brown', /(on|om)/i, '<span class="brown">\1</span>'],
+    ['ɔ̃', 'brown', /(on|om)(?!e|a|u|i|o|n)/i, '<span class="brown">\1</span>'],
+    ['ɛ̃', 'green', /((a|e)?i[nm](?!e|a|u|i|o))/i, '<span class="green">\1</span>'],
     ['ɛ', 'purple', /((a|e)[iî])/i, '<span class="purple">\1</span>'],
-    ['ɛ̃', 'green', /((a|e)?in)/i, '<span class="green">\1</span>'],
     ['o', 'pink', /(eau|au)/i, '<span class="pink">\1</span>'],
     ['ø', 'blue', /(eu)/i, '<span class="blue">\1</span>'],
     ['œ', 'blue', /(eu)/i, '<span class="blue">\1</span>']
