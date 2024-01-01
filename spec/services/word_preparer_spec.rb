@@ -25,12 +25,16 @@ RSpec.describe WordPreparer do
     it { expect_prep('apparemment', 'apparemm<span class="orange">en</span>t') }
     it { expect_prep('souterrains', 's<span class="red">ou</span>terr<span class="green"><span class="purple">ai</span>n</span>s') }
     it { expect_prep('terrains', 'terr<span class="green"><span class="purple">ai</span>n</span>s') }
-    # it { expect_prep('enfourchent', "<span class=\"orange\">en</span>f<span class=\"red\">ou</span>rchent") }
     it { expect_prep('insinuent', '<span class="green">in</span>sinuent') }
     # it { expect_prep('rangent', "r<span class=\"orange\">an</span>gent") }
     # it { expect_prep('entrent', "<span class=\"orange\">en</span>trent") }
+    # it { expect_prep('enfourchent', "<span class=\"orange\">en</span>f<span class=\"red\">ou</span>rchent") }
     it { expect_prep('prononcé', 'pron<span class="brown">on</span>cé') }
     it { expect_prep('ronchonne', "r<span class=\"brown\">on</span>chonne") }
     it { expect_prep('dégoûtant', "dég<span class=\"red\">oû</span>t<span class=\"orange\">an</span>t") }
+    it { expect_prep('cymbales', "c<span class=\"green\">ym</span>bales") }
+    it { expect_prep('$$chapitre$$', '<div class="break-after-page"></div>') }
+    it { expect_prep('test - youpi - test - youpi - test', 'test&nbsp;-&nbsp;youpi&nbsp;-&nbsp;test&nbsp;-&nbsp;youpi&nbsp;-&nbsp;test') }
+    it { expect_prep('piston – pshit ! -', "pist<span class=\"brown\">on</span>&nbsp;–&nbsp;pshit&nbsp;!&nbsp;-") }
   end
 end

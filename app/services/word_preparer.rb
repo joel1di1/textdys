@@ -11,12 +11,16 @@ class WordPreparer
     ['u', 'red', /(o[uùû])/i, '<span class="red">\1</span>'],
     ['wa', 'black', /(o[iî])/i, '<span class="black">\1</span>'],
     ['ɔ̃', 'brown', /(on|om)(?!e|a|u|i|o|n)/i, '<span class="brown">\1</span>'],
-    ['ɛ̃', 'green', /((a|e)?i[nm](?!e|a|u|i|o))/i, '<span class="green">\1</span>'],
+    ['ɛ̃', 'green', /((a|e)?(i|y)[nm](?!e|a|u|i|o))/i, '<span class="green">\1</span>'],
     ['ɛ', 'purple', /((a|e)[iî])/i, '<span class="purple">\1</span>'],
     ['o', 'pink', /(eau|au)/i, '<span class="pink">\1</span>'],
     ['ø', 'blue', /(eu)/i, '<span class="blue">\1</span>'],
     ['œ', 'blue', /(eu)/i, '<span class="blue">\1</span>']
   ].freeze
+
+  FLOW_REPLACEMENTS = {
+    '$$chapitre$$' => '<div class="break-after-page"></div>'
+  }
 
   CACHE = {} # rubocop:disable Style/MutableConstant
 
@@ -96,7 +100,20 @@ class WordPreparer
     prepared_text = phonemized_pairs.map { |word, phonemized_word| prepare_word(word, phonemized_word) }.join
     # remove spaces before punctuation
 
-    prepared_text.gsub("\n", '<br>')
+    prepared_text.gsub!("\n", '<br>')
+
+    # replace flow words
+    FLOW_REPLACEMENTS.each do |flow_word, replacement|
+      prepared_text.gsub!(flow_word, replacement)
+    end
+
+
+    # for all , ; : . ? ! ) }, replace previous space with non-breaking space
+    prepared_text.gsub!(/ ([,;:»\-–\.\?!)\}])/) { |_match| "&nbsp;#{Regexp.last_match(1)}" }
+
+    prepared_text.gsub!(/([\(\{\-–»]) /) { |_match| "#{Regexp.last_match(1)}&nbsp;" }
+
+    prepared_text
   end
 
   def write_all_keys_not_in_redis_to_file(filename_src, filename_dest) # rubocop:disable Metrics/AbcSize
