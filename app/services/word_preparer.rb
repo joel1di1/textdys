@@ -34,6 +34,26 @@ class WordPreparer
     @redis_client ||= Redis.new
   end
 
+  def colorize_phoneme(word, phonemized_word, phoneme, regexp, replace)
+    nb_to_replace = word_contains_phoneme(phonemized_word, phoneme)
+
+    return word if nb_to_replace.zero?
+
+    to_be_replaced = word
+    left = ''
+
+
+    nb_to_replace.times do
+      # debugger
+      index = to_be_replaced.index(regexp)
+      break if index.nil?
+      left += to_be_replaced[0...index] + to_be_replaced[regexp].gsub(regexp, replace)
+      to_be_replaced = to_be_replaced[(index + to_be_replaced[regexp].size)..]
+    end
+
+    left + to_be_replaced
+  end
+
   def prepare_word(word, phonemized_word)
     return word if word.match?(/^\W+$/)
     return word if phonemized_word.blank?
@@ -42,7 +62,7 @@ class WordPreparer
 
     prepared_word = word
     SPECIAL_PHONEMES.each do |phoneme, _color, regexp, replace|
-      prepared_word = prepared_word.gsub(regexp, replace) if word_contains_phoneme(phonemized_word, phoneme)
+      prepared_word = colorize_phoneme(prepared_word, phonemized_word, phoneme, regexp, replace)
     end
 
     prepared_word
@@ -52,17 +72,19 @@ class WordPreparer
     word_phonemes_chars = word_phonemes.chars
     phoneme_chars = phoneme.chars
 
+    nb_contains = 0
+
     (word_phonemes_chars.length - phoneme_chars.length + 1).times do |i|
       phoneme_chars.length.times do |j|
         break if word_phonemes_chars[i + j] != phoneme_chars[j]
 
         if j == phoneme_chars.length - 1 &&
            (word_phonemes_chars.length <= i + j + 1 || word_phonemes_chars[i + j + 1] != CHAR_RELOU)
-          return true
+          nb_contains += 1
         end
       end
     end
-    false
+    nb_contains
   end
 
   def cache

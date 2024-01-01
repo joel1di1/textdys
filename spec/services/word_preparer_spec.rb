@@ -26,9 +26,9 @@ RSpec.describe WordPreparer do
     it { expect_prep('souterrains', 's<span class="red">ou</span>terr<span class="green"><span class="purple">ai</span>n</span>s') }
     it { expect_prep('terrains', 'terr<span class="green"><span class="purple">ai</span>n</span>s') }
     it { expect_prep('insinuent', '<span class="green">in</span>sinuent') }
-    # it { expect_prep('rangent', "r<span class=\"orange\">an</span>gent") }
-    # it { expect_prep('entrent', "<span class=\"orange\">en</span>trent") }
-    # it { expect_prep('enfourchent', "<span class=\"orange\">en</span>f<span class=\"red\">ou</span>rchent") }
+    it { expect_prep('rangent', "r<span class=\"orange\">an</span>gent") }
+    it { expect_prep('entrent', "<span class=\"orange\">en</span>trent") }
+    it { expect_prep('enfourchent', "<span class=\"orange\">en</span>f<span class=\"red\">ou</span>rchent") }
     it { expect_prep('prononcé', 'pron<span class="brown">on</span>cé') }
     it { expect_prep('ronchonne', "r<span class=\"brown\">on</span>chonne") }
     it { expect_prep('dégoûtant', "dég<span class=\"red\">oû</span>t<span class=\"orange\">an</span>t") }
