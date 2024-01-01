@@ -9,9 +9,9 @@ class WordPreparer
   SPECIAL_PHONEMES = [
     ['ɑ̃', 'orange', /(?<!ai)(an|em|en|am)(?!e|a)/i, '<span class="orange">\1</span>'],
     ['u', 'red', /(ou)/i, '<span class="red">\1</span>'],
-    ['wa', 'black', /(oi)/i, '<span class="black">\1</span>'],
+    ['wa', 'black', /(o[iî])/i, '<span class="black">\1</span>'],
     ['ɔ̃', 'brown', /(on|om)/i, '<span class="brown">\1</span>'],
-    ['ɛ', 'purple', /(ai|ei)/i, '<span class="purple">\1</span>'],
+    ['ɛ', 'purple', /((a|e)[iî])/i, '<span class="purple">\1</span>'],
     ['ɛ̃', 'green', /((a|e)?in)/i, '<span class="green">\1</span>'],
     ['o', 'pink', /(eau|au)/i, '<span class="pink">\1</span>'],
     ['ø', 'blue', /(eu)/i, '<span class="blue">\1</span>'],
@@ -31,7 +31,7 @@ class WordPreparer
   end
 
   def prepare_word(word, phonemized_word)
-    return word if word.match?(/\W/)
+    return word if word.match?(/^\W+$/)
     return word if phonemized_word.blank?
 
     return "<span class=\"tool-word\">#{word}</span>" if TOOL_WORDS.include?(word.downcase)
@@ -81,12 +81,12 @@ class WordPreparer
     # split text into words, separate punctuation from words
     # the sentence "c'est un exemple. Comme un autre"
     # becomes ["c", "'"", " ", "est", " ", "un", " ", "exemple", ".", " ", "Comme", " ", "un", " ", "autre"]
-    words = text.split(/(\W)/).reject(&:empty?)
+    words = text.split(/(\b)/).reject(&:empty?)
 
     # get phonemized words from Redis
     phonemized_pairs = words.map do |word|
       case word
-      when /\W/
+      when /^\W+$/
         [word, nil]
       else
         [word, get_phonemized_word(word)]
