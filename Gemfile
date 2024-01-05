@@ -8,6 +8,7 @@ gem 'bootsnap', require: false
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'puma'
+gem 'ruby-progressbar'
 gem 'rails', '~> 7.1.2'
 gem 'slim'
 gem 'sprockets-rails'

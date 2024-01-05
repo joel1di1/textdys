@@ -319,6 +319,7 @@ DEPENDENCIES
   rubocop
   rubocop-rails
   rubocop-rspec
+  ruby-progressbar
   selenium-webdriver
   slim
   sprockets-rails

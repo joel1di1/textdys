@@ -167,6 +167,52 @@ class WordPreparer
       end
     end
   end
+
+  def check_redis_keys()
+
+    # read all_redis_check and list all keys in a Set
+    all_words = File.read('all_redis_check.txt').split("\n").map { |line| line.split(':').first }.to_set
+
+    # in a map
+    words_to_rechecks = CACHE.entries.reject { |word, _phonemized_word| all_words.include?(word) }.to_h
+
+    progressbar = ProgressBar.create(:format => '%a <%B> %p%% %e')
+    progressbar.total = words_to_rechecks.size
+
+    batch_size = 100
+    # append to file
+    File.open('all_redis_check.txt', 'a') do |file|
+      words_to_rechecks.each_slice(batch_size) do |slice|
+        # all keys 
+        keys = slice.map { |word, _phonemized_word| word }
+
+        # all values
+        values = slice.map { |_word, phonemized_word| phonemized_word }
+
+        phonemized_words = `python3 #{Rails.root}/python/text_to_dys.py "#{keys.join("\n")}"`
+
+        phonemized_words_split = phonemized_words.split("\n")
+        if phonemized_words_split.length != keys.length
+          puts "Error for:"
+          (0...keys.length).each do |index|
+            puts "#{keys[index]}: #{phonemized_words_split[index]}"
+          end
+          return
+        end
+
+        phonemized_words_split.each_with_index do |phonemized_word, index|
+          if phonemized_word != values[index]
+            # puts "Error for #{keys[index]}: #{values[index]}  != #{phonemized_word} (cache-new)"
+          end
+
+          file.puts("#{keys[index]}: #{phonemized_word}")
+        end
+
+        # increment progress bar if neccessary, based on words_to_rechecks size
+        progressbar.progress += slice.length
+      end
+    end
+  end
 end
 
 # def read_file_and_fill_memory_hash(filename)
