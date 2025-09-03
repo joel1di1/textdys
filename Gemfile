@@ -2,14 +2,14 @@
 
 source 'https://rubygems.org'
 
-ruby '3.3.5'
+ruby '3.4.5'
 
 gem 'bootsnap', require: false
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'puma'
-gem 'ruby-progressbar'
 gem 'rails', '~> 8.0.2'
+gem 'ruby-progressbar'
 gem 'slim'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
